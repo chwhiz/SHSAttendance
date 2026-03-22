@@ -7,16 +7,63 @@ import java.awt.event.*;
 
 public class UIBuilder {
 
+    // Flag for Dark Mode
+    public static boolean isDarkMode = false;
+
     // Centralized Colors
-    public static final Color MAROON    = new Color(138, 26, 19);
-    public static final Color GOLD      = new Color(248, 205, 0);
-    public static final Color BG        = new Color(245, 243, 240);
-    public static final Color CARD_BG   = Color.WHITE;
-    public static final Color TEXT_MAIN = new Color(40, 40, 40);
-    public static final Color TEXT_DIM  = new Color(130, 130, 130);
-    public static final Color BORDER    = new Color(220, 215, 210);
-    public static final Color DANGER    = new Color(192, 57, 43);
-    public static final Color SUCCESS   = new Color(39, 174, 96);
+    public static Color MAROON    = new Color(138, 26, 19);
+    public static Color GOLD      = new Color(248, 205, 0);
+    public static Color BG        = new Color(245, 243, 240);
+    public static Color CARD_BG   = Color.WHITE;
+    public static Color TEXT_MAIN = new Color(40, 40, 40);
+    public static Color TEXT_DIM  = new Color(130, 130, 130);
+    public static Color BORDER    = new Color(220, 215, 210);
+    public static Color DANGER    = new Color(192, 57, 43);
+    public static Color SUCCESS   = new Color(39, 174, 96);
+    
+    // Method to apply the correct theme at startup
+    public static void applyTheme() {
+        if (isDarkMode) {
+            // Apply Dark Colors
+            BG        = new Color(30, 30, 30);
+            CARD_BG   = new Color(45, 45, 45);
+            TEXT_MAIN = new Color(230, 230, 230);
+            TEXT_DIM  = new Color(170, 170, 170);
+            BORDER    = new Color(60, 60, 60);
+            
+            try {
+                javax.swing.UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            // Revert back to Light Colors
+            BG        = new Color(245, 243, 240);
+            CARD_BG   = Color.WHITE;
+            TEXT_MAIN = new Color(40, 40, 40);
+            TEXT_DIM  = new Color(130, 130, 130);
+            BORDER    = new Color(220, 215, 210);
+            
+            try {
+                javax.swing.UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    // Method to apply dark mode changes dynamically
+    public static void toggleDarkMode() {
+        isDarkMode = !isDarkMode;
+        applyTheme();
+        
+        // Refresh all active frames/dialogs automatically
+        for (Window window : Window.getWindows()) {
+            SwingUtilities.updateComponentTreeUI(window);
+            window.repaint();
+        }
+    }
+
     
     // Centralized Fonts
     public static final Font FONT_H1    = new Font("Segoe UI", Font.BOLD, 28);

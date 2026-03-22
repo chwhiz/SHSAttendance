@@ -17,15 +17,15 @@ public class MainFrame extends JFrame {
 
     private static final ZoneId PH_TIME = ZoneId.of("Asia/Manila");
 
-    private static final Color MAROON    = new Color(138, 26, 19);
-    private static final Color GOLD      = new Color(248, 205, 0);
-    private static final Color BG        = new Color(245, 243, 240);
-    private static final Color CARD_BG   = Color.WHITE;
-    private static final Color TEXT_MAIN = new Color(40, 40, 40);
-    private static final Color TEXT_DIM  = new Color(130, 130, 130);
-    private static final Color DANGER    = new Color(192, 57, 43);
-    private static final Color SUCCESS   = new Color(39, 174, 96);
-    private static final Color BORDER    = new Color(220, 215, 210);
+    private Color MAROON    = UIBuilder.MAROON;
+    private Color GOLD      = UIBuilder.GOLD;
+    private Color BG        = UIBuilder.BG;
+    private Color CARD_BG   = UIBuilder.CARD_BG;
+    private Color TEXT_MAIN = UIBuilder.TEXT_MAIN;
+    private Color TEXT_DIM  = UIBuilder.TEXT_DIM;
+    private Color DANGER    = UIBuilder.DANGER;
+    private Color SUCCESS   = UIBuilder.SUCCESS;
+    private Color BORDER    = UIBuilder.BORDER;
     private static final Color NOVO_BG   = new Color(30, 30, 30);
     private static final Color NOVO_BTN  = new Color(50, 50, 50);
     private static final Color NOVO_HOV  = new Color(70, 70, 70);
@@ -163,12 +163,20 @@ public class MainFrame extends JFrame {
         JButton btnAdmins   = novoButton("Admins",      true);
         JButton btnSchedule = novoButton("Schedule",    true);
         JButton btnReload   = novoButton("Reload DB",   false);
+        JButton btnTheme    = novoButton("Toggle Dark Mode", false);
         JButton btnDevMode  = novoButton("Dev Mode",    false); // secret shortcut din sa dev options ko 
         JButton btnExit     = novoButton("Exit System", false);
 
         btnViewLog.addActionListener(e -> {
             forceHideNovoBar();
             if (authCheck(false)) new AttendanceLogFrame().setVisible(true);
+        });
+        btnTheme.addActionListener(e -> {
+            forceHideNovoBar();
+            UIBuilder.toggleDarkMode();
+            // To fully apply custom colors to existing components, a relaunch of MainFrame works best
+            this.dispose();
+            new MainFrame().setVisible(true);
         });
         btnStudents.addActionListener(e -> {
             forceHideNovoBar();
@@ -209,6 +217,8 @@ public class MainFrame extends JFrame {
         novoBar.add(btnSchedule);
         novoBar.add(novoDivider());
         novoBar.add(btnReload);
+        novoBar.add(novoDivider());
+        novoBar.add(btnTheme);
         novoBar.add(novoDivider());
         novoBar.add(btnDevMode);
         novoBar.add(novoDivider());
@@ -1156,6 +1166,7 @@ public class MainFrame extends JFrame {
     //  MAIN
     // =========================================================
     public static void main(String[] args) {
+        UIBuilder.applyTheme();  // Apply theme before anything else loads
         SplashScreen.launch();   // ← congratulations HAHAHAHAH
     }
 }

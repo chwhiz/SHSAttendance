@@ -10,13 +10,13 @@ import java.awt.event.*;
 
 public class AdminAuthDialog extends JDialog {
 
-    private static final Color MAROON    = UIBuilder.MAROON;
-    private static final Color GOLD      = UIBuilder.GOLD;
-    private static final Color BG        = UIBuilder.BG;
-    private static final Color CARD_BG   = UIBuilder.CARD_BG;
-    private static final Color TEXT_MAIN = UIBuilder.TEXT_MAIN;
-    private static final Color TEXT_DIM  = UIBuilder.TEXT_DIM;
-    private static final Color BORDER    = UIBuilder.BORDER;
+    private Color MAROON    = UIBuilder.MAROON;
+    private Color GOLD      = UIBuilder.GOLD;
+    private Color BG        = UIBuilder.BG;
+    private Color CARD_BG   = UIBuilder.CARD_BG;
+    private Color TEXT_MAIN = UIBuilder.TEXT_MAIN;
+    private Color TEXT_DIM  = UIBuilder.TEXT_DIM;
+    private Color BORDER    = UIBuilder.BORDER;
 
     private boolean authenticated = false;
     private AdminUser foundAdmin  = null;
@@ -199,7 +199,7 @@ public class AdminAuthDialog extends JDialog {
         btnRow1.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
         btnRow1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton cancelBtn = UIBuilder.createToolbarButton("Cancel", new Color(230, 225, 220), TEXT_MAIN);
+        JButton cancelBtn = UIBuilder.createToolbarButton("Cancel", BORDER, TEXT_MAIN);
         cancelBtn.setPreferredSize(new Dimension(100, 32));
 
         cancelBtn.addActionListener(e -> dispose());
@@ -266,8 +266,8 @@ public class AdminAuthDialog extends JDialog {
         btnRow.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // REFACTORED: Use UIBuilder for buttons
-        JButton backBtn   = UIBuilder.createToolbarButton("← Back", new Color(230, 225, 220), TEXT_MAIN);
-        JButton cancelBtn = UIBuilder.createToolbarButton("Cancel", new Color(230, 225, 220), TEXT_MAIN);
+        JButton backBtn   = UIBuilder.createToolbarButton("← Back", BORDER, TEXT_MAIN);
+        JButton cancelBtn = UIBuilder.createToolbarButton("Cancel", BORDER, TEXT_MAIN);
         JButton verifyBtn = UIBuilder.createToolbarButton("Verify", MAROON, Color.WHITE);
 
         backBtn.addActionListener(e -> {

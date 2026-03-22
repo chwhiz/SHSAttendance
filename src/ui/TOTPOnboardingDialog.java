@@ -106,7 +106,7 @@ public class TOTPOnboardingDialog extends JDialog {
         // Instruction
         JLabel lblStep1 = new JLabel("Step 1: Open your Authenticator app");
         lblStep1.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        lblStep1.setForeground(new Color(40, 40, 40));
+        lblStep1.setForeground(UIBuilder.TEXT_MAIN);
         lblStep1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel lblStep2 = new JLabel("Step 2: Scan the QR code above");
@@ -126,7 +126,7 @@ public class TOTPOnboardingDialog extends JDialog {
 
         // Secret key display box
         JPanel keyBox = new JPanel(new BorderLayout(8, 0));
-        keyBox.setBackground(new Color(245, 243, 240));
+        keyBox.setBackground(UIBuilder.BG);
         keyBox.setBorder(new CompoundBorder(
             new LineBorder(BORDER, 1, true),
             new EmptyBorder(10, 14, 10, 14)

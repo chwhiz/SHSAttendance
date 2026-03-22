@@ -10,12 +10,12 @@ import java.sql.SQLException;
 
 public class SplashScreen extends JWindow {
 
-    private static final Color MAROON   = UIBuilder.MAROON;
-    private static final Color GOLD     = UIBuilder.GOLD;
-    private static final Color CARD_BG  = UIBuilder.CARD_BG;
-    private static final Color TEXT_DIM = UIBuilder.TEXT_DIM;
-    private static final Color BORDER   = UIBuilder.BORDER;
-    private static final Color DANGER   = UIBuilder.DANGER;
+    private Color MAROON   = UIBuilder.MAROON;
+    private Color GOLD     = UIBuilder.GOLD;
+    private Color CARD_BG  = UIBuilder.CARD_BG;
+    private Color TEXT_DIM = UIBuilder.TEXT_DIM;
+    private Color BORDER   = UIBuilder.BORDER;
+    private Color DANGER   = UIBuilder.DANGER;
 
     private JLabel    lblStep;
     private JLabel    lblSubStep;
@@ -29,7 +29,16 @@ public class SplashScreen extends JWindow {
     private Component retryStrut  = null;
 
     public SplashScreen(Runnable onReady) {
+        UIBuilder.applyTheme(); // Ensure theme is applied before creating splash
+        
         this.onReady = onReady;
+        this.MAROON   = UIBuilder.MAROON;
+        this.GOLD     = UIBuilder.GOLD;
+        this.CARD_BG  = UIBuilder.CARD_BG;
+        this.TEXT_DIM = UIBuilder.TEXT_DIM;
+        this.BORDER   = UIBuilder.BORDER;
+        this.DANGER   = UIBuilder.DANGER;
+        
         setSize(560, 380);
         setLocationRelativeTo(null);
         buildUI();
@@ -116,7 +125,7 @@ public class SplashScreen extends JWindow {
 
         // ── Progress bar ──────────────────────────────────────
         progressTrack = new JPanel(null);
-        progressTrack.setBackground(new Color(230, 225, 220));
+        progressTrack.setBackground(BORDER);
         progressTrack.setMaximumSize(new Dimension(Integer.MAX_VALUE, 6));
         progressTrack.setPreferredSize(new Dimension(0, 6));
         progressTrack.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -150,7 +159,7 @@ public class SplashScreen extends JWindow {
         // ── Footer ────────────────────────────────────────────
         JLabel lblVersion = new JLabel("Made with love by ICT 11-02");
         lblVersion.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-        lblVersion.setForeground(new Color(180, 175, 170));
+        lblVersion.setForeground(TEXT_DIM);
         lblVersion.setAlignmentX(Component.LEFT_ALIGNMENT);
         lblVersion.setBorder(new EmptyBorder(18, 0, 0, 0));
 
@@ -193,7 +202,7 @@ public class SplashScreen extends JWindow {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                                     RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(230, 225, 220));
+                g2.setColor(BORDER);
                 g2.fillOval(0, 0, 28, 28);
                 g2.setColor(TEXT_DIM);
                 g2.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -216,7 +225,7 @@ public class SplashScreen extends JWindow {
 
         JLabel s = new JLabel(sub);
         s.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-        s.setForeground(new Color(180, 175, 170));
+        s.setForeground(TEXT_DIM);
 
         text.add(t);
         text.add(s);
@@ -389,8 +398,8 @@ public class SplashScreen extends JWindow {
     public static void launch() {
         // --- 1. SET UP FLATLAF THEME ---
         try {
-            // Apply the modern light theme to keep the school colors
-            javax.swing.UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+            // Apply the theme chosen in UIBuilder
+            UIBuilder.applyTheme();
             
             // Set some global modern UI properties
             javax.swing.UIManager.put( "Button.arc", 8 );      // Softer UI component corners
