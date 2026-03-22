@@ -1,4 +1,7 @@
 ﻿<div align="center">
+  <img src="assets/ict1102_logo.png" alt="ICT 11-02 Logo" width="60" />
+  <img src="assets/30th.png" alt="30th Anniversary Logo" width="60" />
+  
   <h1>SmartAttend</h1>
   <h3>for University of Perpetual Help System DALTA - Molino Campus</h3>
   <p><b>Final Project in Computer Programming 2 : Java</b><br>
@@ -10,6 +13,12 @@
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
   <img src="https://img.shields.io/badge/NetBeans-1B6AC6?style=for-the-badge&logo=apache-netbeans&logoColor=white" />                                       
   <img src="https://img.shields.io/badge/RFID-Scanner-brightgreen?style=for-the-badge" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="assets/smartattend.png" alt="SmartAttend Banner" />
 </div>
 
 <br/>
